@@ -9,11 +9,11 @@ const Modal = {
 
 const Storage = {
     get() {
-        return JSON.parse(localStorage.getItem("dev.finances:transaction")) || []
+        return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []
 
     },
     set(transactions){
-        localStorage.setItem("dev.finances:transaction", JSON.stringify(transactions))
+        localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions))
 
     }
 }
@@ -102,14 +102,16 @@ const DOM = {
 }
 
 const Utils = {
-    FormatAmount(value){
-        value = Number(Value)*100
+    formatAmount(value){
+        value = Number(value)*100
+
+        return value
     },
     formatDate(date){
-        const spliteedDate = date.split("-")
+        const splittedDate = date.split("-")
         return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
     },
-        formatCurrency(value){
+    formatCurrency(value){
         const signal = Number(value) < 0 ? "-" : ""
 
         value = String(value).replace(/\D/g, "")
